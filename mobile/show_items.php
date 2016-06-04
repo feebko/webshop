@@ -1,6 +1,4 @@
 <?php
-$_SESSION['user']=$_GET['username'];
-session_start();
 include 'dbconnect.php';
 $topic=$_GET['topic'];
 $array=array();
@@ -27,14 +25,14 @@ switch ($topic) {
 	
 		break;
 }
- if(isset($_SESSION['user']))
-	{
+ // if(isset($_SESSION['user']))
+	// {
 		$result=$conn->query($sql);
 		while($row=$result->fetch_assoc())
 		{
 			$array[]=$row;
 		}
 		echo json_encode($array);
-	}
- else echo "Error";
+	// }
+ // else echo "Error";
 ?>

@@ -15,9 +15,9 @@ if(mysqli_query($conn,$sql))
 				if($password==$row['password'])
 				{
 					$_SESSION['user']=$username;	
-					session_id('user');
+					//session_id('user');
 					session_start();
-					echo session_id();
+					//echo session_id();
 					echo "1";
 				}
 				else echo 'password';
