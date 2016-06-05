@@ -1,24 +1,3 @@
-<html>
-  <body>
-    <form method="POST" action="">
-      <table>
-        <tbody>
-          <tr>
-            <th>
-              <label for="howlong">How long? :</label>
-            </th>
-            <td>
-              <input type="text" id="howlong" name="howlong" />
-            </td>
-          </tr>
-          <tr>
-            <input type="submit" value="submit"/>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-  </body>
-</html>
 <?php
 /*
  * @Some Rights with Bhupal Sapkota
