@@ -1,38 +1,44 @@
 <?php
 include 'dbconnect.php';
-
-if(isset($_POST['login_btn']))
+if(!isset($_SESSION['user']))
+{
+	if(isset($_POST['login_btn']))
 	{
-		$username = $_POST['username'];
-		$pwd = $_POST['password'];
-		$password = md5($pwd);
-		$sql = "SELECT password FROM customers WHERE username='$username'";
-		if(mysqli_query($conn,$sql))
+		if(!empty($_POST['username'])&&!empty($_POST['password']))
 		{
-			$result=$conn->query($sql);
-			if($result->num_rows>0)
+			$username = $_POST['username'];
+			$pwd = $_POST['password'];
+			$password = md5($pwd);
+			$sql = "SELECT password FROM customers WHERE username='$username'";
+			if(mysqli_query($conn,$sql))
 			{
-				while($row=$result->fetch_assoc())
+				$result=$conn->query($sql);
+				if($result->num_rows>0)
 				{
-					if($password==$row['password'])
+					while($row=$result->fetch_assoc())
 					{
-						$_SESSION['user']=$username;	
-						//session_id('user');
-						session_start();
-						header("Location: index.php");
-						die();
-						//echo session_id();
-						echo "1";
+						if($password==$row['password'])
+						{
+							$_SESSION['user']=$username;
+							session_start();
+							// header("Location: index.php");
+							// die();
+						}
+						else echo "password";
 					}
-					else echo 'password';
 				}
+				else echo "username";
 			}
-			else echo "user";
-		}
-	else echo 'connection';
+			else echo "<connection";
+		} else echo "Put in sosme credentials";
+	}
 }
+else 
+{
+	echo "Logged in:".$_SESSION['user'];
+}	
 ?>
-<form action="login.php" method="POST">
+<form name="testForm"action="login.php" method="POST">
 	<input type="text" name="username"></input>
 	<input type="password" name="password"></input>
 	<input type="submit" name="login_btn" value="Login"></input>

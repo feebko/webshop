@@ -10,7 +10,7 @@ switch ($topic) {
 		break;
 
 	case 'new':
-		$sql="SELECT * FROM items WHERE added_date > 2016-06-23";
+		$sql="SELECT id,name,discount,price,image_link1 FROM items ";
 		break;
 
 	case 'sale':
@@ -19,6 +19,11 @@ switch ($topic) {
 
 	case 'hot':
 		$sql="SELECT * FROM items WHERE purchases > 5";
+		break;
+
+	case 'categories':
+		$cat_id=$_GET['id'];
+		$sql="SELECT * FROM items WHERE category_id='$cat_id'";
 		break;
 	
 	default:
