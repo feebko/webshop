@@ -2,7 +2,7 @@
 include 'dbconnect.php';
 $id=$_GET['id'];
 $array=array();
-$sql="SELECT * FROM items WHERE id='$id'";
+$sql="SELECT * FROM items WHERE category_id='$id'";
 
  // if(isset($_SESSION['user']))
 	// {

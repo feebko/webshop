@@ -4,36 +4,36 @@ include 'dbconnect.php';
 
 if (isset($_POST['submit']))
     {
-                            $target_dir = "uploads/";
-                            $location = "uploads/".basename($_FILES['fileupload']['name']);
+                            $target_dir = "/../uploads/";
+                            $location = "/../uploads/".basename($_FILES['fileupload']['name']);
                             $target_file = mysqli_real_escape_string($conn,$target_dir . basename($_FILES['fileupload']['name']));
                             $faculty = mysqli_real_escape_string($conn,$_POST['faculty']);
                             $sub = mysqli_real_escape_string($conn,$_POST['subject']);
                             
-                            if(!is_dir("uploads"))
+                            if(!is_dir("/../uploads"))
                             {   
                             // it creates a dir "uploads"  .
-                                mkdir("uploads");           
+                                mkdir("/../uploads");           
                              }
 
                              function savedata()
                             {
 
-                            $location = "uploads/".basename($_FILES['fileupload']['name']);
-                            $faculty = mysqli_real_escape_string($conn,$_POST['faculty']);
-                            $sub = mysqli_real_escape_string($conn,$_POST['subject']);
-                            $sql = "insert into files(filelocation,faculty,subject) VALUES('$location','$faculty','$sub')";
-                            $query = mysqli_query($sql); 
+                            // $location = "uploads/".basename($_FILES['fileupload']['name']);
+                            // $faculty = mysqli_real_escape_string($_POST['faculty']);
+                            // $sub = mysqli_real_escape_string($conn,$_POST['subject']);
+                            // $sql = "insert into files(filelocation,faculty,subject) VALUES('$location','$faculty','$sub')";
+                            // $query = mysqli_query($sql); 
 
-                                if ($query) {
-                                            echo "<script>
-                                                window.location.href='browse.php';
-                                                alert('Your file is successfully uploaded.');
-                                                </script>";
-                                            }       
-                                else{
-                                    $msz = "<br/>Something went wrong while uploading. Please retry.";
-                                    }   
+                            //     if ($query) {
+                            //                 echo "<script>
+                            //                     window.location.href='browse.php';
+                            //                     alert('Your file is successfully uploaded.');
+                            //                     </script>";
+                            //                 }       
+                            //     else{
+                            //         $msz = "<br/>Something went wrong while uploading. Please retry.";
+                            //         }   
                             }
 
                             
@@ -45,7 +45,7 @@ if (isset($_POST['submit']))
                             else
                              {
                                   move_uploaded_file($_FILES["fileupload"]["tmp_name"],
-                                  "uploads/" . $_FILES["fileupload"]["name"]);
+                                  "/../uploads/" . $_FILES["fileupload"]["name"]);
                                   savedata();
                              }
 
