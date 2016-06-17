@@ -1,45 +1,40 @@
 <?php
-include 'dbconnect.php';
-if(!isset($_SESSION['user']))
-{
-	if(isset($_POST['login_btn']))
-	{
-		if(!empty($_POST['username'])&&!empty($_POST['password']))
-		{
-			$username = $_POST['username'];
-			$pwd = $_POST['password'];
-			$password = md5($pwd);
-			$sql = "SELECT password FROM customers WHERE username='$username'";
-			if(mysqli_query($conn,$sql))
-			{
-				$result=$conn->query($sql);
-				if($result->num_rows>0)
-				{
-					while($row=$result->fetch_assoc())
-					{
-						if($password==$row['password'])
-						{
-							$_SESSION['user']=$username;
-							session_start();
-							// header("Location: index.php");
-							// die();
+require 'dbconnect.php';
+if(isset($_POST['submit'])){
+	$username=$_POST['user'];
+	$password=$_POST['pass'];
+	$password=md5($password);
+
+		if(!empty($username) && !empty($password)){
+						$sql="select username from customers where username='$username' and password='$password'"; 
+						$query_run=mysql_query($sql);
+						if(mysql_num_rows($query_run)==1){
+
+							echo "Welcome";
 						}
-						else echo "password";
-					}
+						else{
+									echo "Invalid username and password";
+
+						}
+
+
 				}
-				else echo "username";
-			}
-			else echo "<connection";
-		} else echo "Put in sosme credentials";
-	}
+				else{
+					echo "All fields are required";
+				
+				}
+				
+				
+			
 }
-else 
-{
-	echo "Logged in:".$_SESSION['user'];
-}	
+
+
+
+
+
 ?>
-<form name="testForm"action="login.php" method="POST">
-	<input type="text" name="username"></input>
-	<input type="password" name="password"></input>
-	<input type="submit" name="login_btn" value="Login"></input>
+<form action="login.php" method="POST">
+Username:<input type = "text"  name="user"><br><br>
+Password:<input type ="text"  name="pass"><br><br>
+<input value ="Log In" type="submit" name="submit">
 </form>
