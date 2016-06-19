@@ -1,6 +1,7 @@
 <?php
 
 include '/../dbconnect.php';
+//include '../partials/header.php';
 session_start();
 if (isset($_POST['submit']))
     {
@@ -21,28 +22,27 @@ if (isset($_POST['submit']))
 
                              function savedata()
                             {
-                            include '/../dbconnect.php';
-                            $image_link1 = "http://".$hostname."/webshop/uploads/".basename($_FILES['fileupload']['name']);
-                            $image_link2="asf";
-                            $image_link3="asf";
-                            $username=$_SESSION['user'];
-                            $name = mysqli_real_escape_string($conn,$_POST['name']);
-                            $description = mysqli_real_escape_string($conn,$_POST['description']);
-                            $price = mysqli_real_escape_string($conn,$_POST['price']);
-                            $category_id = mysqli_real_escape_string($conn,$_POST['category_id']);
-                            $sql="SELECT * FROM merchants WHERE username='$username'";
-                            $result=$conn->query($sql);
-                            while($row=$result->fetch_assoc())
-                            {
-                                $merchant_id=$row['id'];
-                            }
-                            $discount = mysqli_real_escape_string($conn,$_POST['discount']);
-                            
-                            //$date_added=date('m/d/Y', 1299446702);
-                            $sql="INSERT INTO items(name,description,category_id,price,discount,merchant_id,image_link1,image_link2,image_link3)
-                            VALUES('$name','$description','$category_id','$price','$discount','$merchant_id','$image_link1','$image_link2','$image_link3')";
-                            if(mysqli_query($conn,$sql))echo "Success <br><a href='upload.php'>Add more.</a>";
-                            else echo "Saving Failed";                    
+                                include '/../dbconnect.php';
+                                $image_link1 = "http://".$hostname."/webshop/uploads/".basename($_FILES['fileupload']['name']);
+                                $image_link2="asf";
+                                $image_link3="asf";
+                                $username=$_SESSION['user'];
+                                $name = mysqli_real_escape_string($conn,$_POST['name']);
+                                $description = mysqli_real_escape_string($conn,$_POST['description']);
+                                $price = mysqli_real_escape_string($conn,$_POST['price']);
+                                $category_id = mysqli_real_escape_string($conn,$_POST['category_id']);
+                                $sql="SELECT * FROM merchants WHERE username='$username'";
+                                $result=$conn->query($sql);
+                                while($row=$result->fetch_assoc())
+                                    {
+                                        $merchant_id=$row['id'];
+                                    }
+                                $discount = mysqli_real_escape_string($conn,$_POST['discount']);
+                                //$date_added=date('m/d/Y', 1299446702);
+                                $sql="INSERT INTO items(name,description,category_id,price,discount,merchant_id,image_link1,image_link2,image_link3)
+                                VALUES('$name','$description','$category_id','$price','$discount','$merchant_id','$image_link1','$image_link2','$image_link3')";
+                                if(mysqli_query($conn,$sql))echo "Success <br><a href='upload.php'>Add more.</a>";
+                                else echo "Saving Failed";                    
                             }
 
                             
@@ -62,11 +62,16 @@ if (isset($_POST['submit']))
                                 
 }
 ?>
-
+<html>
+<body>
+    <title>Add products</title>
+      <link rel="stylesheet" href="../assets/css/bootstrap-theme.css">
+    <!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
+</body>
             <form method="POST" enctype="multipart/form-data">
                 <h2>Add Item</h2>
                 <hr/>
-                Name:<input type='text' name='name' id='name'></input>
+                <div class = "form-group" >Name:<input type='text' name='name' id='name'></input></div>
                 Description:<input type='text' name='description' id='description'></input>
                <br> Price:<input type='number' name='price' id='price'></input>
                 Discount:<input type='number' name='discount' id='discount'></input>
@@ -75,11 +80,7 @@ if (isset($_POST['submit']))
                 <span class="btn btn-default btn-file">Choose file<input type="file" name="fileupload">
                 </span>
                 </div>
-
                 <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                <hr/>
-                
-                     
-                           
+                <hr/>  
             </form>
 </html>

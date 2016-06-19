@@ -1,35 +1,10 @@
-<head>
-    <title>WEBSHOP</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/../assets/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="/../assets/js/bootstrap.min.js"></script>
-</head>
+
+<html>
 <body>
-<div>
-		<p class="text-right" >
-		<form class="form-inline" method='POST' action='login.php'>
-  <div class="form-group">
-    <label class="sr-only" for="user">Username</label>
-    <input type="text" class="form-control" id="user" name="user" placeholder="Username">
-  </div>
-  <div class="form-group">
-    <label class="sr-only" for="pass">Password</label>
-    <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
-  </div>
-  <div class="form-group">
-  <a href="forgot_password.php">Forgot Password</a>
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox"> Remember me
-    </label>
-  </div>
-  <button type="submit" id='submit' name='submit' class="btn btn-default">Sign in</button>
-  </div>
-  </p>
-</form>
+    <title>WebShop|Sign in</title>
+      <link rel="stylesheet" href="../assets/css/bootstrap-theme.css">
+    <!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
+</body>
 <?php
 require '/../dbconnect.php';
 if(isset($_POST['submit']))
@@ -64,7 +39,29 @@ if(isset($_POST['submit']))
 	}
 
 }
-
-
-
 ?>
+
+<body>
+<div>
+		<p class="text-right" >
+		<form class="form-inline" method='POST' action='login.php'>
+  <div class="form-group">
+    <label class="sr-only" for="user">Username</label>
+    <input type="text" class="form-control" id="user" name="user" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="pass">Password</label>
+    <input type="password" class="form-control" id="pass" name="pass" placeholder="Password">
+  </div>
+  <div class="form-group">
+  <a href="forgot_password.php">Forgot Password</a>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Remember me
+    </label>
+  </div>
+  <button type="submit" id='submit' name='submit' class="btn btn-default">Sign in</button>
+  </div>
+  </p>
+</form>
