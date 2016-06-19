@@ -1,32 +1,34 @@
 <?php
 require 'dbconnect.php';
-if(isset($_POST['submit'])){
-	$username=$_POST['user'];
-	$password=$_POST['pass'];
-	$password=md5($password);
 
-		if(!empty($username) && !empty($password)){
-						$sql="select username from customers where username='$username' and password='$password'"; 
-						$query_run=mysql_query($sql);
-						if(mysql_num_rows($query_run)==1){
+		if(isset($_POST['submit'])){
+			$username=$_POST['user'];
+			$password=$_POST['pass'];
+			$password=md5($password);
 
-							echo "Welcome";
+				if(!empty($username) && !empty($password)){
+								$sql="select username from customers where username='$username' and password='$password'"; 
+								$query_run=mysql_query($sql);
+								if(mysql_num_rows($query_run)==1){
+
+									echo "Welcome";
+								}
+								else{
+											echo "Invalid username and password";
+
+								}
+
+
 						}
 						else{
-									echo "Invalid username and password";
-
+							echo "All fields are required";
+						
 						}
-
-
-				}
-				else{
-					echo "All fields are required";
-				
-				}
-				
-				
-			
-}
+						
+						
+					
+		}
+	}
 
 
 

@@ -49,8 +49,8 @@ if(isset($_POST['submit']))
 					{
 						if($password==$row['password'])
 						{
-							$_SESSION['user']=$username;	
 							session_start();
+							$_SESSION['user']=$username;	
 							//echo session_id();
 							header("Location: index.php");
 							die();
