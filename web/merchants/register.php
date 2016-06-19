@@ -15,43 +15,43 @@ if(isset($_POST['register']))
 			$vdcmun=$_POST['vdcmun'];
 			$address1=$_POST['address1'];
 			$address2=$_POST['address2'];
+			//username,email ra phone  check garna sql code haru lekheko
+			$ucheck_sql = "SELECT password FROM merchants WHERE username='$username'";
+			$uresult=$conn->query($ucheck_sql);
+
+			$echeck_sql = "SELECT password FROM merchants WHERE email='$email'";
+			$eresult=$conn->query($echeck_sql);
+
+			$phcheck_sql = "SELECT password FROM merchants WHERE phone='$phone'";
+			$phresult=$conn->query($phcheck_sql);
 			
-				if(!empty($name)&&!empty($username)&&!empty($password) &&!empty($repass) &&!empty($email)&&!empty($phone) &&!empty($district) &&!empty($vdcmun) &&!empty($address1)){ 
-						$sql="select username from merchants where username='$username'"; 
-						$query_run=mysql_query($sql);
-						if(mysql_num_rows($query_run)==1){
-
-							echo "Username Not Available";
-						}
-						else{
+				if(!empty($name)&&!empty($username)&&!empty($password) &&!empty($repass) &&!empty($email)&&!empty($phone) &&!empty($district) &&!empty($vdcmun) &&!empty($address1))
+				{ 
+						if($uresult->num_rows>0)echo "username exists";
+						else if($eresult->num_rows>0)echo "email exists";
+						else if($phresult->num_rows>0)echo "phone exists";
+						else
+						{
 									if($password==$repass){
-										$sql = "insert into customers(name,username,password,email,phone,district,vdcmun,address1,address2) VALUES ('$name','$username','$password','$email','$phone','$district','$vdcmun','$address1','$address2')";
-						 				$query = mysql_query($sql);
-												if($query){
-														echo "success";
-												}
-												else{
-													echo "failed";
-												}
-						
-
+										$sql2 = "insert into merchants(name,username,password,email,phone,district,vdcmun,address1,address2) VALUES ('$name','$username','$password','$email','$phone','$district','$vdcmun','$address1','$address2')";
+										if(mysqli_query($conn,$sql2))
+											{
+												echo 'Registered Success';
+												header("Location: login.php");
+												die();
+											}
+										else echo "Registration Failed";
 									}
 									else{
 									echo "Password Mismatch";
-
 								}
-
 						}
-
-
 				}
-				else{
+				else
+				{
 					echo "All fields are required";
 				
 				}
-				
-				
-			
 }
 
 
