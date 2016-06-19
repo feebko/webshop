@@ -6,9 +6,11 @@ if (!(isset($_SESSION['user'])))
 	{
 				header("Location: login.php");
 	}
-else 
-	{
+
 		echo "Welcome.".$_SESSION['user'];
-		echo "<br> <a href='logout.php'>Logout</a>";
-	}
 ?>
+		<br> <a href='profile.php?username=<?php echo $_SESSION['user'];?>'>My Profile</a>
+		<br> <a href='orders.php'>Orders</a>
+		<br> <a href='upload.php'>Items</a>
+		<br> <a href='statistics.php'>Statistics</a>
+		<br> <a href='logout.php'>Logout</a>
