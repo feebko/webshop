@@ -56,6 +56,9 @@ if(isset($_POST['submit']))
   <div class="form-group">
   <a href="forgot_password.php">Forgot Password</a>
   </div>
+   <div class="form-group">
+  <a href="register.php">Create New Account</a>
+  </div>
   <div class="checkbox">
     <label>
       <input type="checkbox"> Remember me
